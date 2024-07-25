@@ -1,0 +1,13 @@
+{
+  "block.copperrails.copper_rail": "Copper Rail",
+  "block.copperrails.waxed_copper_rail": "Waxed Copper Rail",
+
+  "block.copperrails.exposed_copper_rail": "Exposed Copper Rail",
+  "block.copperrails.waxed_exposed_copper_rail": "Waxed Exposed Copper Rail",
+
+  "block.copperrails.weathered_copper_rail": "Weathered Copper Rail",
+  "block.copperrails.waxed_weathered_copper_rail": "Waxed Weathered Copper Rail",
+
+  "block.copperrails.oxidized_copper_rail": "Oxidized Copper Rail",
+  "block.copperrails.waxed_oxidized_copper_rail": "Waxed Oxidized Copper Rail"
+}

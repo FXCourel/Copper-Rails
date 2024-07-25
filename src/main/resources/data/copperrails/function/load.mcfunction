@@ -1,0 +1,1 @@
+tellraw @a [{"text":" Copper","bold":true,"color":"#f18a64"},{"text":"Rails ","bold":true,"color":"#53d5b5"},{"text":"+  ","bold":true,"color":"white"},{"text":"Datapack reloaded successfully","bold":false,"color":"yellow"}]

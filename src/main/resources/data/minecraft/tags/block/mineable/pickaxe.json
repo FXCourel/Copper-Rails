@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "copperrails:copper_rail",
+    "copperrails:waxed_copper_rail",
+
+    "copperrails:exposed_copper_rail",
+    "copperrails:waxed_exposed_copper_rail",
+
+    "copperrails:weathered_copper_rail",
+    "copperrails:waxed_weathered_copper_rail",
+
+    "copperrails:oxidized_copper_rail",
+    "copperrails:waxed_oxidized_copper_rail"
+  ]
+}
