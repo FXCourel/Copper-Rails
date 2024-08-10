@@ -3,13 +3,13 @@
 	"id": "copperrails",
 	"version": "${version}",
 	"name": "Copper Rails",
-	"description": "Adds new rails to the game to buff minecarts (Oxidizable copper rails and crossings !",
+	"description": "Adds new rails to the game to buff minecarts : oxidizable copper rails and crossings !",
 	"authors": [
 		"Rob0fox"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/project/copperrails",
+		"sources": "https://github.com/FXCourel/Copper-Rails"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/copperrails/icon.png",
