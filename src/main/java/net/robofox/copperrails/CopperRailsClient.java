@@ -22,6 +22,6 @@ public class CopperRailsClient implements ClientModInitializer {
         cutout(ModBlocks.WAXED_EXPOSED_COPPER_RAIL);
         cutout(ModBlocks.WAXED_WEATHERED_COPPER_RAIL);
         cutout(ModBlocks.WAXED_OXIDIZED_COPPER_RAIL);
-//        cutout(ModBlocks.RAIL_CROSSING);
+        cutout(ModBlocks.RAIL_CROSSING);
     }
 }

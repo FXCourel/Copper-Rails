@@ -9,5 +9,7 @@
   "block.copperrails.waxed_weathered_copper_rail": "Waxed Weathered Copper Powered Rail",
 
   "block.copperrails.oxidized_copper_rail": "Oxidized Copper Powered Rail",
-  "block.copperrails.waxed_oxidized_copper_rail": "Waxed Oxidized Copper Powered Rail"
+  "block.copperrails.waxed_oxidized_copper_rail": "Waxed Oxidized Copper Powered Rail",
+
+  "block.copperrails.rail_crossing": "Crossing Rail"
 }

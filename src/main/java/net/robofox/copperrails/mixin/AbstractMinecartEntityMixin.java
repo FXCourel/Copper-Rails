@@ -1,7 +1,9 @@
 package net.robofox.copperrails.mixin;
 
 import net.minecraft.block.*;
+import net.minecraft.block.enums.RailShape;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
+import net.minecraft.state.property.Property;
 import net.minecraft.util.math.Vec3d;
 import net.robofox.copperrails.CopperRails;
 import net.robofox.copperrails.CopperRailsConfig;
@@ -148,5 +150,55 @@ public abstract class AbstractMinecartEntityMixin {
 			v_z = CopperRailsConfig.MAX_ASCENDING_SPEED;
 		}
 		minecart.setVelocity(v_x, v_y, v_z);
+	}
+
+	/**
+	 * Mixin to implement rail direction switching for crossing rail blocks
+	 */
+	@Unique
+	private RailShape getRailShape(BlockState blockState, Property<RailShape> property) {
+		RailShape railShape = blockState.get(property);
+		if (blockState.isOf(ModBlocks.RAIL_CROSSING)) {
+			boolean isPowered = blockState.get(PoweredRailBlock.POWERED);
+			if (isPowered) {
+				switch (railShape) {
+					case NORTH_SOUTH:
+						return RailShape.EAST_WEST;
+					case EAST_WEST:
+						return RailShape.NORTH_SOUTH;
+					default:
+						CopperRails.LOGGER.error("Crossing rail has invalid shape");
+				}
+			}
+		}
+		return railShape;
+	}
+
+	@Redirect(
+			method = "moveOnRail",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/block/BlockState;get(Lnet/minecraft/state/property/Property;)Ljava/lang/Comparable;",
+					ordinal = 1))
+	public <T extends Comparable<T>> T getMoveOnRailMixin(BlockState blockState, Property<RailShape> property) {
+		return (T) getRailShape(blockState, property);
+	}
+	@Redirect(
+			method = "snapPositionToRailWithOffset",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/block/BlockState;get(Lnet/minecraft/state/property/Property;)Ljava/lang/Comparable;",
+					ordinal = 0))
+	public <T extends Comparable<T>> T getSnapPositionToRailWithOffsetMixin(BlockState blockState, Property<RailShape> property) {
+		return (T) getRailShape(blockState, property);
+	}
+	@Redirect(
+			method = "snapPositionToRail",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/block/BlockState;get(Lnet/minecraft/state/property/Property;)Ljava/lang/Comparable;",
+					ordinal = 0))
+	public <T extends Comparable<T>> T getSnapPositionToRailMixin(BlockState blockState, Property<RailShape> property) {
+		return (T) getRailShape(blockState, property);
 	}
 }

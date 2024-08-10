@@ -10,12 +10,13 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.robofox.copperrails.CopperRails;
+import net.robofox.copperrails.block.custom.CrossingRailBlock;
 import net.robofox.copperrails.block.custom.GenericCopperRailBlock;
 import net.robofox.copperrails.block.custom.OxidizableCopperRailBlock;
 
 public class ModBlocks {
 
-    public static final Block COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.ORANGE)), "copper_rail");
+    public static final Block COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.ORANGE)), "copper_rail.json");
     public static final Block EXPOSED_COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.EXPOSED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)), "exposed_copper_rail");
     public static final Block WEATHERED_COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.WEATHERED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.DARK_AQUA)), "weathered_copper_rail");
     public static final Block OXIDIZED_COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.OXIDIZED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.TEAL)), "oxidized_copper_rail");
@@ -23,7 +24,7 @@ public class ModBlocks {
     public static final Block WAXED_EXPOSED_COPPER_RAIL = register(new GenericCopperRailBlock(AbstractBlock.Settings.copy(ModBlocks.EXPOSED_COPPER_RAIL)), "waxed_exposed_copper_rail");
     public static final Block WAXED_WEATHERED_COPPER_RAIL = register(new GenericCopperRailBlock(AbstractBlock.Settings.copy(ModBlocks.WEATHERED_COPPER_RAIL)), "waxed_weathered_copper_rail");
     public static final Block WAXED_OXIDIZED_COPPER_RAIL = register(new GenericCopperRailBlock(AbstractBlock.Settings.copy(ModBlocks.OXIDIZED_COPPER_RAIL)), "waxed_oxidized_copper_rail");
-//    public static final Block RAIL_CROSSING = register(new CrossingRailBlock(AbstractBlock.Settings.copy(Blocks.RAIL)), "rail_crossing");
+    public static final Block RAIL_CROSSING = register(new CrossingRailBlock(AbstractBlock.Settings.copy(Blocks.POWERED_RAIL)), "rail_crossing");
 
     public static void initialize() {
         putInRedstoneTab(ModBlocks.COPPER_RAIL);
@@ -34,7 +35,7 @@ public class ModBlocks {
         putInRedstoneTab(ModBlocks.WAXED_EXPOSED_COPPER_RAIL);
         putInRedstoneTab(ModBlocks.WAXED_WEATHERED_COPPER_RAIL);
         putInRedstoneTab(ModBlocks.WAXED_OXIDIZED_COPPER_RAIL);
-//        putInRedstoneTab(ModBlocks.RAIL_CROSSING);
+        putInRedstoneTab(ModBlocks.RAIL_CROSSING);
 
         // Register copper rails for oxidation
         OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.COPPER_RAIL, ModBlocks.EXPOSED_COPPER_RAIL);

@@ -9,5 +9,7 @@
   "block.copperrails.waxed_weathered_copper_rail": "Rails de propulsion en cuivre érodé ciré",
 
   "block.copperrails.oxidized_copper_rail": "Rails de propulsion en cuivre oxydé",
-  "block.copperrails.waxed_oxidized_copper_rail": "Rails de propulsion en cuivre oxydé ciré"
+  "block.copperrails.waxed_oxidized_copper_rail": "Rails de propulsion en cuivre oxydé ciré",
+
+  "block.copperrails.rail_crossing": "Rail de croisement"
 }

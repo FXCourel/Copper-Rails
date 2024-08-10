@@ -3,7 +3,7 @@
 	"id": "copperrails",
 	"version": "${version}",
 	"name": "Copper Rails",
-	"description": "Adds copper rails to the game. They are faster than regular powered rails, but they slow down with oxidation. Use this to your advantage !",
+	"description": "Adds new rails to the game to buff minecarts (Oxidizable copper rails and crossings !",
 	"authors": [
 		"Rob0fox"
 	],
