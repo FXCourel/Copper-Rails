@@ -1,0 +1,32 @@
+{
+  "parent": "copperrails:recipes/copper_rail",
+  "criteria": {
+    "has_rail": {
+      "conditions": {
+        "items": [
+          {
+            "items": "copperrails:exposed_copper_rail"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "copperrails:waxed_exposed_copper_rail"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rail"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "copperrails:waxed_exposed_copper_rail"
+    ]
+  }
+}
