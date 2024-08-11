@@ -16,7 +16,7 @@ import net.robofox.copperrails.block.custom.OxidizableCopperRailBlock;
 
 public class ModBlocks {
 
-    public static final Block COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.ORANGE)), "copper_rail.json");
+    public static final Block COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.ORANGE)), "copper_rail");
     public static final Block EXPOSED_COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.EXPOSED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)), "exposed_copper_rail");
     public static final Block WEATHERED_COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.WEATHERED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.DARK_AQUA)), "weathered_copper_rail");
     public static final Block OXIDIZED_COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.OXIDIZED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.TEAL)), "oxidized_copper_rail");

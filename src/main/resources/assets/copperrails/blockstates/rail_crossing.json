@@ -13,6 +13,20 @@
     },
     "powered=true,shape=north_south": {
       "model": "copperrails:block/rail_crossing_on"
+    },
+    "shape=ascending_east": {
+      "model": "copperrails:block/rail_crossing",
+      "y": 90
+    },
+    "shape=ascending_west": {
+      "model": "copperrails:block/rail_crossing",
+      "y": 90
+    },
+    "shape=ascending_north": {
+      "model": "copperrails:block/rail_crossing"
+    },
+    "shape=ascending_south": {
+      "model": "copperrails:block/rail_crossing"
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "parent": "copperrails:recipes/copper_rail",
+  "parent": "copperrails:recipes/transportation/copper_rail",
   "criteria": {
     "has_rail": {
       "conditions": {
