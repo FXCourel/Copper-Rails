@@ -20,9 +20,6 @@
 		],
 		"client": [
 			"net.robofox.copperrails.CopperRailsClient"
-		],
-		"fabric-datagen": [
-			"net.robofox.copperrails.CopperRailsDataGenerator"
 		]
 	},
 	"mixins": [
