@@ -26,10 +26,10 @@ A built-in resource pack is included in the mod to render 3D rails like VanillaT
 
 ### Supported languages
 - English (US)
-- French (France)
-- French (Canada)
+- Français (France)
+- Français (Canada)
 - Community supported languages (may not be 100% accurate) :
-  - Simplified Chinese 简体中文（中国大陆)
+  - 简体中文（中国大陆) *(Simplified Chinese)*
 
 Not playing in these languages will display English (US) names.
 
