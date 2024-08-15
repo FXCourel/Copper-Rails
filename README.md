@@ -27,9 +27,13 @@ A built-in resource pack is included in the mod to render 3D rails like VanillaT
 ### Supported languages
 - English (US)
 - French (France)
+- French (Canada)
+- Community supported languages (may not be 100% accurate) :
+  - Simplified Chinese 简体中文（中国大陆)
 
 Not playing in these languages will display English (US) names.
 
 ### Credits
 - Thanks to [Modern Minecarts](https://www.curseforge.com/minecraft/mc-mods/modernminecarts) to have inspired this modding journey, from which I took inspiration and reused copper rails textures.
 - Blockbench for creating 3D model of crossing, VanillaTweaks for powered rails model.
+- Thanks to translations contributors
