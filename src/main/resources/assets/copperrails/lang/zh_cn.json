@@ -1,0 +1,15 @@
+{
+    "block.copperrails.copper_rail": "动力铜轨",
+    "block.copperrails.waxed_copper_rail": "涂蜡动力铜轨",
+  
+    "block.copperrails.exposed_copper_rail": "斑驳的动力铜轨",
+    "block.copperrails.waxed_exposed_copper_rail": "斑驳的涂蜡动力铜轨",
+  
+    "block.copperrails.weathered_copper_rail": "锈蚀的动力铜轨",
+    "block.copperrails.waxed_weathered_copper_rail": "锈蚀的涂蜡动力铜轨",
+  
+    "block.copperrails.oxidized_copper_rail": "氧化的动力铜轨",
+    "block.copperrails.waxed_oxidized_copper_rail": "氧化的涂蜡动力铜轨",
+  
+    "block.copperrails.rail_crossing": "交叉铁轨"
+  }
