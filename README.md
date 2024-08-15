@@ -2,6 +2,8 @@
 
 Have you always wanted to buff minecarts to make them more useful and transport you between your or your friends' bases ? This mod adds new rails : copper rails and rail crossings.
 
+> **About Experimental Features :** Snapshot 24w33a introduced minecart improvements experiments. This doesn't make CopperRails useless as it is still a good idea to have different speeds for each level of oxidization. So, I plan to adapt this mod to be compatible with this new system. But for now, please **do not try to use this mod if you have experimental features enabled, as it will NOT work (and could break your game).**
+
 ## Copper Rails
 
 Copper rails are more powerful rails than regular golden powered rails. However their speed reduces with oxidation ! You can also use this reduced speed (slower than regular powered rails when fully oxidized) to brake carts or move them slowly.
