@@ -4,6 +4,7 @@
 build/
 out/
 classes/
+remappedSrc/
 
 # eclipse
 
@@ -39,4 +40,3 @@ replay_*.log
 *.hprof
 *.jfr
 .gitattributes
-
