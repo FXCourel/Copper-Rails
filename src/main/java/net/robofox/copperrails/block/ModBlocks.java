@@ -2,13 +2,17 @@ package net.robofox.copperrails.block;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
-import net.minecraft.block.*;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.WeatheringCopper;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.robofox.copperrails.CopperRails;
 import net.robofox.copperrails.block.custom.CrossingRailBlock;
 import net.robofox.copperrails.block.custom.GenericCopperRailBlock;
@@ -16,15 +20,15 @@ import net.robofox.copperrails.block.custom.OxidizableCopperRailBlock;
 
 public class ModBlocks {
 
-    public static final Block COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.ORANGE)), "copper_rail");
-    public static final Block EXPOSED_COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.EXPOSED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)), "exposed_copper_rail");
-    public static final Block WEATHERED_COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.WEATHERED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.DARK_AQUA)), "weathered_copper_rail");
-    public static final Block OXIDIZED_COPPER_RAIL = register(new OxidizableCopperRailBlock(Oxidizable.OxidationLevel.OXIDIZED, AbstractBlock.Settings.copy(Blocks.POWERED_RAIL).mapColor(MapColor.TEAL)), "oxidized_copper_rail");
-    public static final Block WAXED_COPPER_RAIL = register(new GenericCopperRailBlock(AbstractBlock.Settings.copy(ModBlocks.COPPER_RAIL)), "waxed_copper_rail");
-    public static final Block WAXED_EXPOSED_COPPER_RAIL = register(new GenericCopperRailBlock(AbstractBlock.Settings.copy(ModBlocks.EXPOSED_COPPER_RAIL)), "waxed_exposed_copper_rail");
-    public static final Block WAXED_WEATHERED_COPPER_RAIL = register(new GenericCopperRailBlock(AbstractBlock.Settings.copy(ModBlocks.WEATHERED_COPPER_RAIL)), "waxed_weathered_copper_rail");
-    public static final Block WAXED_OXIDIZED_COPPER_RAIL = register(new GenericCopperRailBlock(AbstractBlock.Settings.copy(ModBlocks.OXIDIZED_COPPER_RAIL)), "waxed_oxidized_copper_rail");
-    public static final Block RAIL_CROSSING = register(new CrossingRailBlock(AbstractBlock.Settings.copy(Blocks.POWERED_RAIL)), "rail_crossing");
+    public static final Block COPPER_RAIL = register(new OxidizableCopperRailBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.ofFullCopy(Blocks.POWERED_RAIL).mapColor(MapColor.COLOR_ORANGE)), "copper_rail");
+    public static final Block EXPOSED_COPPER_RAIL = register(new OxidizableCopperRailBlock(WeatheringCopper.WeatherState.EXPOSED, BlockBehaviour.Properties.ofFullCopy(Blocks.POWERED_RAIL).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)), "exposed_copper_rail");
+    public static final Block WEATHERED_COPPER_RAIL = register(new OxidizableCopperRailBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.ofFullCopy(Blocks.POWERED_RAIL).mapColor(MapColor.WARPED_STEM)), "weathered_copper_rail");
+    public static final Block OXIDIZED_COPPER_RAIL = register(new OxidizableCopperRailBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.ofFullCopy(Blocks.POWERED_RAIL).mapColor(MapColor.WARPED_NYLIUM)), "oxidized_copper_rail");
+    public static final Block WAXED_COPPER_RAIL = register(new GenericCopperRailBlock(BlockBehaviour.Properties.ofFullCopy(ModBlocks.COPPER_RAIL)), "waxed_copper_rail");
+    public static final Block WAXED_EXPOSED_COPPER_RAIL = register(new GenericCopperRailBlock(BlockBehaviour.Properties.ofFullCopy(ModBlocks.EXPOSED_COPPER_RAIL)), "waxed_exposed_copper_rail");
+    public static final Block WAXED_WEATHERED_COPPER_RAIL = register(new GenericCopperRailBlock(BlockBehaviour.Properties.ofFullCopy(ModBlocks.WEATHERED_COPPER_RAIL)), "waxed_weathered_copper_rail");
+    public static final Block WAXED_OXIDIZED_COPPER_RAIL = register(new GenericCopperRailBlock(BlockBehaviour.Properties.ofFullCopy(ModBlocks.OXIDIZED_COPPER_RAIL)), "waxed_oxidized_copper_rail");
+    public static final Block RAIL_CROSSING = register(new CrossingRailBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POWERED_RAIL)), "rail_crossing");
 
     public static void initialize() {
         putInRedstoneTab(ModBlocks.COPPER_RAIL);
@@ -48,14 +52,14 @@ public class ModBlocks {
     }
 
     public static void putInRedstoneTab(Block block) {
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE)
-                .register((itemGroup) -> itemGroup.add(block.asItem()));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS)
+                .register((itemGroup) -> itemGroup.accept(block.asItem()));
     }
 
     private static Block register(Block block, String id) {
-        Identifier blockID = Identifier.of(CopperRails.MOD_ID, id);
-        BlockItem blockItem = new BlockItem(block, new Item.Settings());
-        Registry.register(Registries.ITEM, blockID, blockItem);
-        return Registry.register(Registries.BLOCK, blockID, block);
+        ResourceLocation blockID = ResourceLocation.fromNamespaceAndPath(CopperRails.MOD_ID, id);
+        BlockItem blockItem = new BlockItem(block, new Item.Properties());
+        Registry.register(BuiltInRegistries.ITEM, blockID, blockItem);
+        return Registry.register(BuiltInRegistries.BLOCK, blockID, block);
     }
 }

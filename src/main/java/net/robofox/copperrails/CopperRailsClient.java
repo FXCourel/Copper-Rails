@@ -6,22 +6,22 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.block.Block;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.robofox.copperrails.block.ModBlocks;
 
 public class CopperRailsClient implements ClientModInitializer {
 
     private static void cutout(Block block) {
-        BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutout());
     }
 
     private static void initializeResourcePack() {
-        Identifier id = Identifier.of(CopperRails.MOD_ID, "copperrails3d");
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(CopperRails.MOD_ID, "copperrails3d");
         ModContainer modContainer = FabricLoader.getInstance().getModContainer(CopperRails.MOD_ID).orElseThrow();
-        ResourceManagerHelper.registerBuiltinResourcePack(id, modContainer, Text.of("CopperRails 3D Rails"), ResourcePackActivationType.NORMAL);
+        ResourceManagerHelper.registerBuiltinResourcePack(id, modContainer, Component.nullToEmpty("CopperRails 3D Rails"), ResourcePackActivationType.NORMAL);
     }
 
     @Override

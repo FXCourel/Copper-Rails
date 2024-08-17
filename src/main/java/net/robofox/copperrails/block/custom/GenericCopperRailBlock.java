@@ -1,29 +1,31 @@
 package net.robofox.copperrails.block.custom;
 
-import net.minecraft.block.*;
-import net.minecraft.block.enums.RailShape;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.PoweredRailBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.RailShape;
 
 public class GenericCopperRailBlock extends PoweredRailBlock {
-    public GenericCopperRailBlock(Settings settings) {
+    public GenericCopperRailBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    protected boolean isPoweredByOtherRails(World world, BlockPos pos, boolean bl, int distance, RailShape shape) {
+    protected boolean isSameRailWithPower(Level world, BlockPos pos, boolean bl, int distance, RailShape shape) {
         BlockState blockState = world.getBlockState(pos);
         Block block = blockState.getBlock();
         if (!GenericCopperRailBlock.class.isAssignableFrom(block.getClass())) {
             return false;
         } else {
-            RailShape railShape = blockState.get(SHAPE);
+            RailShape railShape = blockState.getValue(SHAPE);
             if (shape != RailShape.EAST_WEST || railShape != RailShape.NORTH_SOUTH && railShape != RailShape.ASCENDING_NORTH && railShape != RailShape.ASCENDING_SOUTH) {
                 if (shape != RailShape.NORTH_SOUTH || railShape != RailShape.EAST_WEST && railShape != RailShape.ASCENDING_EAST && railShape != RailShape.ASCENDING_WEST) {
-                    if (!(Boolean)blockState.get(POWERED)) {
+                    if (!(Boolean)blockState.getValue(POWERED)) {
                         return false;
                     } else {
-                        return world.isReceivingRedstonePower(pos) || this.isPoweredByOtherRails(world, pos, blockState, bl, distance + 1);
+                        return world.hasNeighborSignal(pos) || this.findPoweredRailSignal(world, pos, blockState, bl, distance + 1);
                     }
                 } else {
                     return false;
