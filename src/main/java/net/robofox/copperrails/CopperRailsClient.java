@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.robofox.copperrails.block.ModBlocks;
@@ -19,9 +18,9 @@ public class CopperRailsClient implements ClientModInitializer {
     }
 
     private static void initializeResourcePack() {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(CopperRails.MOD_ID, "copperrails3d");
+        ResourceLocation id = new ResourceLocation(CopperRails.MOD_ID, "copperrails3d");
         ModContainer modContainer = FabricLoader.getInstance().getModContainer(CopperRails.MOD_ID).orElseThrow();
-        ResourceManagerHelper.registerBuiltinResourcePack(id, modContainer, Component.nullToEmpty("CopperRails 3D Rails"), ResourcePackActivationType.NORMAL);
+        ResourceManagerHelper.registerBuiltinResourcePack(id, modContainer, ResourcePackActivationType.NORMAL);
     }
 
     @Override
