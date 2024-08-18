@@ -1,8 +1,8 @@
 package net.robofox.copperrails.block.custom;
 
-import java.util.Random;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -16,8 +16,8 @@ public class OxidizableCopperRailBlock extends GenericCopperRailBlock implements
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
-        this.onRandomTick(state, world, pos, random);
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource randomSource) {
+        this.onRandomTick(state, world, pos, randomSource);
     }
 
     @Override

@@ -86,7 +86,7 @@ public abstract class AbstractMinecartMixin {
 					target = "Lnet/minecraft/world/entity/vehicle/AbstractMinecart;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 9))
 	public void setVelocityClamp(AbstractMinecart minecart, Vec3 velocity) {
-		double maxSpeed = getMaxRailSpeed(minecart.getLevel().getBlockState(minecart.blockPosition()));
+		double maxSpeed = getMaxRailSpeed(minecart.level().getBlockState(minecart.blockPosition()));
 		minecart.setDeltaMovement(convergeAbs(velocity.x, maxSpeed), velocity.y, convergeAbs(velocity.z, maxSpeed));
 	}
 
