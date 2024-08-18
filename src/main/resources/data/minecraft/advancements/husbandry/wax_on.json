@@ -1,62 +1,71 @@
 {
   "parent": "minecraft:husbandry/safely_harvest_honey",
+  "criteria": {
+    "wax_on": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "minecraft:copper_block",
+                  "minecraft:exposed_copper",
+                  "minecraft:weathered_copper",
+                  "minecraft:oxidized_copper",
+                  "minecraft:cut_copper",
+                  "minecraft:exposed_cut_copper",
+                  "minecraft:weathered_cut_copper",
+                  "minecraft:oxidized_cut_copper",
+                  "minecraft:cut_copper_slab",
+                  "minecraft:exposed_cut_copper_slab",
+                  "minecraft:weathered_cut_copper_slab",
+                  "minecraft:oxidized_cut_copper_slab",
+                  "minecraft:cut_copper_stairs",
+                  "minecraft:exposed_cut_copper_stairs",
+                  "minecraft:weathered_cut_copper_stairs",
+                  "minecraft:oxidized_cut_copper_stairs",
+
+                  "copperrails:waxed_copper_rail",
+                  "copperrails:waxed_exposed_copper_rail",
+                  "copperrails:waxed_weathered_copper_rail",
+                  "copperrails:waxed_oxidized_copper_rail"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "minecraft:honeycomb"
+              ]
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
   "display": {
-    "icon": {
-      "item": "minecraft:honeycomb"
-    },
-    "title": {
-      "translate": "advancements.husbandry.wax_on.title"
-    },
+    "announce_to_chat": true,
     "description": {
       "translate": "advancements.husbandry.wax_on.description"
     },
     "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:honeycomb"
+    },
     "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
-  "criteria": {
-    "wax_on": {
-      "trigger": "minecraft:item_used_on_block",
-      "conditions": {
-        "location": {
-          "block": {
-            "blocks": [
-              "minecraft:copper_block",
-              "minecraft:exposed_copper",
-              "minecraft:weathered_copper",
-              "minecraft:oxidized_copper",
-              "minecraft:cut_copper",
-              "minecraft:exposed_cut_copper",
-              "minecraft:weathered_cut_copper",
-              "minecraft:oxidized_cut_copper",
-              "minecraft:cut_copper_slab",
-              "minecraft:exposed_cut_copper_slab",
-              "minecraft:weathered_cut_copper_slab",
-              "minecraft:oxidized_cut_copper_slab",
-              "minecraft:cut_copper_stairs",
-              "minecraft:exposed_cut_copper_stairs",
-              "minecraft:weathered_cut_copper_stairs",
-              "minecraft:oxidized_cut_copper_stairs",
-
-              "copperrails:copper_rail",
-              "copperrails:exposed_copper_rail",
-              "copperrails:weathered_copper_rail",
-              "copperrails:oxidized_copper_rail"
-            ]
-          }
-        },
-        "item": {
-          "items": [
-            "minecraft:honeycomb"
-          ]
-        }
-      }
+    "title": {
+      "translate": "advancements.husbandry.wax_on.title"
     }
   },
   "requirements": [
     [
       "wax_on"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }
