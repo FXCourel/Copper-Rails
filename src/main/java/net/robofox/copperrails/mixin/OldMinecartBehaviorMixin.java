@@ -15,9 +15,10 @@ import net.robofox.copperrails.block.ModBlocks;
 import net.robofox.copperrails.block.custom.GenericCopperRailBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(OldMinecartBehavior.class)
@@ -63,13 +64,21 @@ public abstract class OldMinecartBehaviorMixin {
     }
 
     /**
-     * @author Robofox
-     * @reason Rewrite all getMaxSpeed (very short) to increase max speed
+     Mixins to adapt max speed in water
      */
-    @Overwrite
-    public double getMaxSpeed() {
-        AbstractMinecart minecart = (OldMinecartBehaviorMixin) (Object) this.minecart;
-        return (minecart.isInWater() ? CopperRailsConfig.NORMAL_RAIL_SPEED / 2.0 : CopperRailsConfig.NORMAL_RAIL_SPEED);
+    @ModifyConstant(
+            method = "getMaxSpeed",
+            constant = @Constant(doubleValue = 4.0)
+    )
+    public double getMaxSpeedInWater(double value) {
+        return CopperRailsConfig.NORMAL_RAIL_SPEED_BPS / 2.0;
+    }
+    @ModifyConstant(
+            method = "getMaxSpeed",
+            constant = @Constant(doubleValue = 8.0)
+    )
+    public double getMaxSpeedOutWater(double value) {
+        return CopperRailsConfig.NORMAL_RAIL_SPEED_BPS;
     }
 
     @Unique
@@ -86,9 +95,9 @@ public abstract class OldMinecartBehaviorMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/entity/vehicle/MinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
-                    ordinal = 9))
+                    ordinal = 10))
     public void setVelocityClamp(OldMinecartBehavior minecartBehavior, Vec3 velocity) {
-        double maxSpeed = getMaxRailSpeed(minecartBehavior.minecart.getInBlockState());
+        double maxSpeed = getMaxRailSpeed(minecartBehavior.level().getBlockState(minecartBehavior.get));
         minecartBehavior.setDeltaMovement(convergeAbs(velocity.x, maxSpeed), velocity.y, convergeAbs(velocity.z, maxSpeed));
     }
 

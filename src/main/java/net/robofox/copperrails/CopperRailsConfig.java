@@ -3,13 +3,13 @@ package net.robofox.copperrails;
 public class CopperRailsConfig {
 
     // Config : Modify speeds (in blocks per second) here
-    private static final float COPPER_SPEED_BPS = 16;
-    private static final float EXPOSED_COPPER_SPEED_BPS = 12;
-    private static final float WEATHERED_COPPER_SPEED_BPS = 6;
-    private static final float OXIDIZED_COPPER_SPEED_BPS = 4;
-    private static final float MAX_ASCENDING_SPEED_BPS = 10;
-    private static final float GOLD_SPEED_BPS = 8;
-    private static final float NORMAL_RAIL_SPEED_BPS = 16;
+    public static final float COPPER_SPEED_BPS = 16;
+    public static final float EXPOSED_COPPER_SPEED_BPS = 12;
+    public static final float WEATHERED_COPPER_SPEED_BPS = 6;
+    public static final float OXIDIZED_COPPER_SPEED_BPS = 4;
+    public static final float MAX_ASCENDING_SPEED_BPS = 10;
+    public static final float GOLD_SPEED_BPS = 8;
+    public static final float NORMAL_RAIL_SPEED_BPS = 16;
 
     // Do not touch (conversion below)
     private static float blockPerSecondToTick(float blockPerSecondSpeed) {
