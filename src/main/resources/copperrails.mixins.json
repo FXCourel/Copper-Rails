@@ -3,7 +3,8 @@
   "package": "net.robofox.copperrails.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "AbstractMinecartMixin",
+    "MinecartBehaviorMixin",
+    "OldMinecartBehaviorMixin",
     "RailStateMixin"
   ],
   "injectors": {

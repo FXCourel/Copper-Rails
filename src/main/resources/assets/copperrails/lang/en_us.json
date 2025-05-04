@@ -11,5 +11,19 @@
   "block.copperrails.oxidized_copper_rail": "Oxidized Copper Powered Rail",
   "block.copperrails.waxed_oxidized_copper_rail": "Waxed Oxidized Copper Powered Rail",
 
-  "block.copperrails.rail_crossing": "Crossing Rail"
+  "block.copperrails.rail_crossing": "Crossing Rail",
+
+  "item.copperrails.copper_rail": "Copper Powered Rail",
+  "item.copperrails.waxed_copper_rail": "Waxed Copper Powered Rail",
+
+  "item.copperrails.exposed_copper_rail": "Exposed Copper Powered Rail",
+  "item.copperrails.waxed_exposed_copper_rail": "Waxed Exposed Copper Powered Rail",
+
+  "item.copperrails.weathered_copper_rail": "Weathered Copper Powered Rail",
+  "item.copperrails.waxed_weathered_copper_rail": "Waxed Weathered Copper Powered Rail",
+
+  "item.copperrails.oxidized_copper_rail": "Oxidized Copper Powered Rail",
+  "item.copperrails.waxed_oxidized_copper_rail": "Waxed Oxidized Copper Powered Rail",
+
+  "item.copperrails.rail_crossing": "Crossing Rail"
 }

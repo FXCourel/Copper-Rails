@@ -1,6 +1,8 @@
 package net.robofox.copperrails.mixin;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
+import net.minecraft.world.entity.vehicle.OldMinecartBehavior;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PoweredRailBlock;
@@ -18,8 +20,12 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(AbstractMinecart.class)
-public abstract class AbstractMinecartMixin {
+@Mixin(OldMinecartBehavior.class)
+public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
+
+	protected OldMinecartBehaviorMixin(AbstractMinecart minecart) {
+		super(minecart);
+	}
 
 	/**
 	 * Mixin to replace check if minecart should be propelled (if rail is powering rail)
@@ -41,9 +47,17 @@ public abstract class AbstractMinecartMixin {
 		}
 	}
 
+	@Redirect(
+			method = "moveAlongTrack",
+			at = @At(value = "INVOKE", target = "Ljava/lang/Math;min(DD)D"))
+	private double newMin(double min, double hozDist) {
+		return Math.min(getMaxRailSpeed() / (3/4), hozDist);
+	}
+
 	@Unique
-	public double getMaxRailSpeed(BlockState blockState) {
-		Block block = blockState.getBlock();
+	public double getMaxRailSpeed(/*BlockState blockState*/) {
+//		Block block = blockState.getBlock();
+		Block block = this.minecart.getInBlockState().getBlock();
 		if (block == ModBlocks.COPPER_RAIL || block == ModBlocks.WAXED_COPPER_RAIL) {
 			return CopperRailsConfig.COPPER_SPEED;
 		} else if (block == ModBlocks.EXPOSED_COPPER_RAIL || block == ModBlocks.WAXED_EXPOSED_COPPER_RAIL) {
@@ -65,38 +79,40 @@ public abstract class AbstractMinecartMixin {
 	 * @reason Rewrite all getMaxSpeed (very short) to increase max speed
 	 */
 	@Overwrite
-	public double getMaxSpeed() {
-		AbstractMinecart minecart = (AbstractMinecart) (Object) this;
-		return (minecart.isInWater() ? CopperRailsConfig.NORMAL_RAIL_SPEED / 2.0 : CopperRailsConfig.NORMAL_RAIL_SPEED);
+	public double getMaxSpeed(ServerLevel $$0) {
+//		return (this.minecart.isInWater() ? CopperRailsConfig.NORMAL_RAIL_SPEED / 2.0 : CopperRailsConfig.NORMAL_RAIL_SPEED);
+		double maxSpeed = getMaxRailSpeed();
+		return (this.minecart.isInWater() ? maxSpeed / 2.0 : maxSpeed);
 	}
 
-	@Unique
-	private double convergeAbs(double speed, double targetSpeed) {
-		if (Math.abs(speed) > targetSpeed) {
-			return Math.signum(speed) * Math.max(Math.abs(speed) * 0.7, targetSpeed);
-		} else {
-			return speed;
-		}
-	}
+//	@Unique
+//	private double convergeAbs(double speed, double targetSpeed) {
+//		if (Math.abs(speed) > targetSpeed) {
+//			return Math.signum(speed) * Math.min(Math.abs(speed) * 1 /*0.7*/, targetSpeed);
+//		} else {
+//			return speed;
+//		}
+//	}
+//
+//	@Redirect(
+//			method = "moveAlongTrack",
+//			at = @At(
+//					value = "INVOKE",
+//					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+//					ordinal = 9))
+//	public void setVelocityClamp(OldMinecartBehavior minecart, Vec3 velocity) {
+////		double maxSpeed = getMaxRailSpeed(minecart.minecart.getInBlockState());
+//		double maxSpeed = getMaxRailSpeed();
+//		minecart.setDeltaMovement(convergeAbs(velocity.x, maxSpeed), velocity.y, convergeAbs(velocity.z, maxSpeed));
+//	}
 
 	@Redirect(
 			method = "moveAlongTrack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/AbstractMinecart;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
-					ordinal = 9))
-	public void setVelocityClamp(AbstractMinecart minecart, Vec3 velocity) {
-		double maxSpeed = getMaxRailSpeed(minecart.getInBlockState());
-		minecart.setDeltaMovement(convergeAbs(velocity.x, maxSpeed), velocity.y, convergeAbs(velocity.z, maxSpeed));
-	}
-
-	@Redirect(
-			method = "moveAlongTrack",
-			at = @At(
-					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/AbstractMinecart;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 0))
-	public void setVelocityAscendingEast(AbstractMinecart minecart, Vec3 velocity_adder) {
+	public void setVelocityAscendingEast(OldMinecartBehavior minecart, Vec3 velocity_adder) {
 		Vec3 velocity = minecart.getDeltaMovement();
 		double v_x = velocity_adder.x;
 		double v_y = velocity_adder.y;
@@ -111,9 +127,9 @@ public abstract class AbstractMinecartMixin {
 			method = "moveAlongTrack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/AbstractMinecart;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 1))
-	public void setVelocityAscendingWest(AbstractMinecart minecart, Vec3 velocity_adder) {
+	public void setVelocityAscendingWest(OldMinecartBehavior minecart, Vec3 velocity_adder) {
 		Vec3 velocity = minecart.getDeltaMovement();
 		double v_x = velocity_adder.x;
 		double v_y = velocity_adder.y;
@@ -128,9 +144,9 @@ public abstract class AbstractMinecartMixin {
 			method = "moveAlongTrack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/AbstractMinecart;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 2))
-	public void setVelocityAscendingNorth(AbstractMinecart minecart, Vec3 velocity_adder) {
+	public void setVelocityAscendingNorth(OldMinecartBehavior minecart, Vec3 velocity_adder) {
 		Vec3 velocity = minecart.getDeltaMovement();
 		double v_x = velocity_adder.x;
 		double v_y = velocity_adder.y;
@@ -145,9 +161,9 @@ public abstract class AbstractMinecartMixin {
 			method = "moveAlongTrack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/AbstractMinecart;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 3))
-	public void setVelocityAscendingSouth(AbstractMinecart minecart, Vec3 velocity_adder) {
+	public void setVelocityAscendingSouth(OldMinecartBehavior minecart, Vec3 velocity_adder) {
 		Vec3 velocity = minecart.getDeltaMovement();
 		double v_x = velocity_adder.x;
 		double v_y = velocity_adder.y;

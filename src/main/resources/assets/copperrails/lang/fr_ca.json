@@ -11,5 +11,20 @@
   "block.copperrails.oxidized_copper_rail": "Rails propulseurs en cuivre oxydé",
   "block.copperrails.waxed_oxidized_copper_rail": "Rails propulseurs en cuivre oxydé ciré",
 
-  "block.copperrails.rail_crossing": "Rails de croisement"
+  "block.copperrails.rail_crossing": "Rails de croisement",
+
+  
+  "item.copperrails.copper_rail": "Rails propulseurs en cuivre",
+  "item.copperrails.waxed_copper_rail": "Rails propulseurs en cuivre ciré",
+
+  "item.copperrails.exposed_copper_rail": "Rails propulseurs en cuivre exposé",
+  "item.copperrails.waxed_exposed_copper_rail": "Rails propulseurs en cuivre exposé ciré",
+
+  "item.copperrails.weathered_copper_rail": "Rails propulseurs en cuivre patiné",
+  "item.copperrails.waxed_weathered_copper_rail": "Rails propulseurs en cuivre patiné ciré",
+
+  "item.copperrails.oxidized_copper_rail": "Rails propulseurs en cuivre oxydé",
+  "item.copperrails.waxed_oxidized_copper_rail": "Rails propulseurs en cuivre oxydé ciré",
+
+  "item.copperrails.rail_crossing": "Rails de croisement"
 }
