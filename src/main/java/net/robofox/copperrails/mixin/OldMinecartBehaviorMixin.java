@@ -47,17 +47,9 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 		}
 	}
 
-	@Redirect(
-			method = "moveAlongTrack",
-			at = @At(value = "INVOKE", target = "Ljava/lang/Math;min(DD)D"))
-	private double newMin(double min, double hozDist) {
-		return Math.min(getMaxRailSpeed() / (3/4), hozDist);
-	}
-
 	@Unique
-	public double getMaxRailSpeed(/*BlockState blockState*/) {
-//		Block block = blockState.getBlock();
-		Block block = this.minecart.getInBlockState().getBlock();
+	public double getMaxRailSpeed(BlockState blockState) {
+		Block block = blockState.getBlock();
 		if (block == ModBlocks.COPPER_RAIL || block == ModBlocks.WAXED_COPPER_RAIL) {
 			return CopperRailsConfig.COPPER_SPEED;
 		} else if (block == ModBlocks.EXPOSED_COPPER_RAIL || block == ModBlocks.WAXED_EXPOSED_COPPER_RAIL) {
@@ -79,32 +71,29 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 	 * @reason Rewrite all getMaxSpeed (very short) to increase max speed
 	 */
 	@Overwrite
-	public double getMaxSpeed(ServerLevel $$0) {
-//		return (this.minecart.isInWater() ? CopperRailsConfig.NORMAL_RAIL_SPEED / 2.0 : CopperRailsConfig.NORMAL_RAIL_SPEED);
-		double maxSpeed = getMaxRailSpeed();
-		return (this.minecart.isInWater() ? maxSpeed / 2.0 : maxSpeed);
+	public double getMaxSpeed(ServerLevel serverLevel) {
+		return (this.minecart.isInWater() ? CopperRailsConfig.NORMAL_RAIL_SPEED / 2.0 : CopperRailsConfig.NORMAL_RAIL_SPEED);
 	}
 
-//	@Unique
-//	private double convergeAbs(double speed, double targetSpeed) {
-//		if (Math.abs(speed) > targetSpeed) {
-//			return Math.signum(speed) * Math.min(Math.abs(speed) * 1 /*0.7*/, targetSpeed);
-//		} else {
-//			return speed;
-//		}
-//	}
-//
-//	@Redirect(
-//			method = "moveAlongTrack",
-//			at = @At(
-//					value = "INVOKE",
-//					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
-//					ordinal = 9))
-//	public void setVelocityClamp(OldMinecartBehavior minecart, Vec3 velocity) {
-////		double maxSpeed = getMaxRailSpeed(minecart.minecart.getInBlockState());
-//		double maxSpeed = getMaxRailSpeed();
-//		minecart.setDeltaMovement(convergeAbs(velocity.x, maxSpeed), velocity.y, convergeAbs(velocity.z, maxSpeed));
-//	}
+	@Unique
+	private double convergeAbs(double speed, double targetSpeed) {
+		if (Math.abs(speed) > targetSpeed) {
+			return Math.signum(speed) * Math.max(Math.abs(speed) * 0.7, targetSpeed);
+		} else {
+			return speed;
+		}
+	}
+
+	@Redirect(
+			method = "moveAlongTrack",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+					ordinal = 9))
+	public void setVelocityClamp(OldMinecartBehavior minecart, Vec3 velocity) {
+		double maxSpeed = getMaxRailSpeed(this.minecart.getInBlockState());
+		minecart.setDeltaMovement(convergeAbs(velocity.x, maxSpeed), velocity.y, convergeAbs(velocity.z, maxSpeed));
+	}
 
 	@Redirect(
 			method = "moveAlongTrack",
