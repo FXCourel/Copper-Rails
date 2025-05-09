@@ -1,8 +1,14 @@
 package net.robofox.copperrails.mixin;
 
+import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.entity.vehicle.OldMinecartBehavior;
+import net.minecraft.world.level.block.BaseRailBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PoweredRailBlock;
@@ -211,5 +217,35 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 					ordinal = 0))
 	public <T extends Comparable<T>> T getSnapPositionToRailMixin(BlockState blockState, Property<RailShape> property) {
 		return (T) getRailShape(blockState, property);
+	}
+
+	@Redirect(
+			method = "moveAlongTrack",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/world/entity/vehicle/AbstractMinecart;move(Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V"
+			)
+	)
+	public void accurateCollisionCheckOnMove(AbstractMinecart minecart, MoverType moverType, Vec3 vec32, @Local(name = "railShape") RailShape railShape) {
+		if (vec32.horizontalDistance() < 0.6) {
+			minecart.move(moverType, vec32);
+			return;
+		}
+		Vec3 destination = this.minecart.position().add(vec32);
+		int i = Mth.floor(destination.x);
+		int j = Mth.floor(destination.y);
+		int k = Mth.floor(destination.z);
+		BlockState destinationBlockState = this.level().getBlockState(new BlockPos(i, j, k));
+		if (destinationBlockState.is(BlockTags.RAILS)) {
+			RailShape destinationShape = destinationBlockState.getValue(((BaseRailBlock) destinationBlockState.getBlock()).getShapeProperty());
+			if (destinationShape == RailShape.ASCENDING_EAST && vec32.x > 0.6 ||
+					destinationShape == RailShape.ASCENDING_WEST && vec32.x < -0.6 ||
+					destinationShape == RailShape.ASCENDING_SOUTH && vec32.z > 0.6 ||
+					destinationShape == RailShape.ASCENDING_NORTH && vec32.z > -0.6
+			) {
+				this.setPos(this.minecart.getX(), this.minecart.getY() + 1, this.minecart.getZ());
+			}
+		}
+		minecart.move(moverType, vec32);
 	}
 }
