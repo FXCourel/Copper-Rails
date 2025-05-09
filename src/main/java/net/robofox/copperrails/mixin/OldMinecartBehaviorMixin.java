@@ -226,7 +226,7 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 					target = "Lnet/minecraft/world/entity/vehicle/AbstractMinecart;move(Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V"
 			)
 	)
-	public void accurateCollisionCheckOnMove(AbstractMinecart minecart, MoverType moverType, Vec3 vec32, @Local(name = "railShape") RailShape railShape) {
+	public void accurateCollisionCheckOnMove(AbstractMinecart minecart, MoverType moverType, Vec3 vec32, @Local(ordinal = 0) RailShape railShape) {
 		if (vec32.horizontalDistance() < 0.6) {
 			minecart.move(moverType, vec32);
 			return;
