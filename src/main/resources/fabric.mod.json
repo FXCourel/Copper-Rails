@@ -9,7 +9,8 @@
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/project/copperrails",
-		"sources": "https://github.com/FXCourel/Copper-Rails"
+		"sources": "https://github.com/FXCourel/Copper-Rails",
+		"issues": "https://github.com/FXCourel/Copper-Rails/issues"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/copperrails/icon.png",
@@ -26,7 +27,7 @@
 		"copperrails.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.11",
+		"fabricloader": ">=0.16.14",
 		"minecraft": "~1.21",
 		"java": ">=21",
 		"fabric-api": "*"
