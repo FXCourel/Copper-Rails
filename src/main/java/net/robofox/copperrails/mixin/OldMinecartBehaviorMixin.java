@@ -6,8 +6,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.entity.vehicle.AbstractMinecart;
-import net.minecraft.world.entity.vehicle.OldMinecartBehavior;
+import net.minecraft.world.entity.vehicle.minecart.AbstractMinecart;
+import net.minecraft.world.entity.vehicle.minecart.OldMinecartBehavior;
 import net.minecraft.world.level.block.BaseRailBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Redirect; 
 
 @Mixin(OldMinecartBehavior.class)
 public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
@@ -94,7 +94,7 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 			method = "moveAlongTrack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+					target = "Lnet/minecraft/world/entity/vehicle/minecart/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 9))
 	public void setVelocityClamp(OldMinecartBehavior minecart, Vec3 velocity) {
 		double maxSpeed = getMaxRailSpeed(this.minecart.getInBlockState());
@@ -105,7 +105,7 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 			method = "moveAlongTrack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+					target = "Lnet/minecraft/world/entity/vehicle/minecart/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 0))
 	public void setVelocityAscendingEast(OldMinecartBehavior minecart, Vec3 velocity_adder) {
 		Vec3 velocity = minecart.getDeltaMovement();
@@ -122,7 +122,7 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 			method = "moveAlongTrack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+					target = "Lnet/minecraft/world/entity/vehicle/minecart/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 1))
 	public void setVelocityAscendingWest(OldMinecartBehavior minecart, Vec3 velocity_adder) {
 		Vec3 velocity = minecart.getDeltaMovement();
@@ -139,7 +139,7 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 			method = "moveAlongTrack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+					target = "Lnet/minecraft/world/entity/vehicle/minecart/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 2))
 	public void setVelocityAscendingNorth(OldMinecartBehavior minecart, Vec3 velocity_adder) {
 		Vec3 velocity = minecart.getDeltaMovement();
@@ -156,7 +156,7 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 			method = "moveAlongTrack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
+					target = "Lnet/minecraft/world/entity/vehicle/minecart/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 3))
 	public void setVelocityAscendingSouth(OldMinecartBehavior minecart, Vec3 velocity_adder) {
 		Vec3 velocity = minecart.getDeltaMovement();
@@ -223,7 +223,7 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 			method = "moveAlongTrack",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/world/entity/vehicle/AbstractMinecart;move(Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V"
+					target = "Lnet/minecraft/world/entity/vehicle/minecart/AbstractMinecart;move(Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V"
 			)
 	)
 	public void accurateCollisionCheckOnMove(AbstractMinecart minecart, MoverType moverType, Vec3 vec32, @Local(ordinal = 0) RailShape railShape) {
