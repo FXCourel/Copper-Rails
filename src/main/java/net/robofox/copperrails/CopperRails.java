@@ -20,7 +20,6 @@ public class CopperRails implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		ModBlocks.initialize();
-		CopperRailsGamerules.createGamerules();
 		LOGGER.info("Initializing Copper Rails !");
 	}
 }

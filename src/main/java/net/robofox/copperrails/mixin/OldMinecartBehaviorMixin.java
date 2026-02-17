@@ -2,6 +2,7 @@ package net.robofox.copperrails.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -15,11 +16,13 @@ import net.minecraft.world.level.block.PoweredRailBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.block.state.properties.RailShape;
+import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.phys.Vec3;
 import net.robofox.copperrails.CopperRails;
 import net.robofox.copperrails.CopperRailsConfig;
 import net.robofox.copperrails.block.ModBlocks;
 import net.robofox.copperrails.block.custom.GenericCopperRailBlock;
+import net.robofox.copperrails.gamerules.CopperRailsGamerules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
@@ -54,22 +57,27 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 	}
 
 	@Unique
-	public double getMaxRailSpeed(BlockState blockState) {
+	public int getMaxRailSpeed(BlockState blockState) {
 		Block block = blockState.getBlock();
-		if (block == ModBlocks.COPPER_RAIL || block == ModBlocks.WAXED_COPPER_RAIL) {
-			return CopperRailsConfig.COPPER_SPEED;
-		} else if (block == ModBlocks.EXPOSED_COPPER_RAIL || block == ModBlocks.WAXED_EXPOSED_COPPER_RAIL) {
-			return CopperRailsConfig.EXPOSED_COPPER_SPEED;
-		} else if (block == ModBlocks.WEATHERED_COPPER_RAIL || block == ModBlocks.WAXED_WEATHERED_COPPER_RAIL) {
-			return CopperRailsConfig.WEATHERED_COPPER_SPEED;
-		} else if (block == ModBlocks.OXIDIZED_COPPER_RAIL || block == ModBlocks.WAXED_OXIDIZED_COPPER_RAIL) {
-			return CopperRailsConfig.OXIDIZED_COPPER_SPEED;
-		} else if (block == Blocks.POWERED_RAIL) {
-			return CopperRailsConfig.GOLD_SPEED;
-		} else {
-			// All other rails not boosting minecarts
-			return CopperRailsConfig.NORMAL_RAIL_SPEED;
+		MinecraftServer server = this.level().getServer();
+		if (server == null) {
+			CopperRails.LOGGER.error("Could not access to server gamerules ! Please report this bug");
+			return CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL_BPS;
 		}
+		GameRules gamerules = server.getWorldData().getGameRules();
+		int answer = CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL_BPS;
+		if (block == ModBlocks.COPPER_RAIL || block == ModBlocks.WAXED_COPPER_RAIL) {
+			answer = gamerules.get(CopperRailsGamerules.MAX_MINECART_SPEED_COPPER);
+		} else if (block == ModBlocks.EXPOSED_COPPER_RAIL || block == ModBlocks.WAXED_EXPOSED_COPPER_RAIL) {
+			answer = gamerules.get(CopperRailsGamerules.MAX_MINECART_SPEED_COPPER_EXPOSED);
+		} else if (block == ModBlocks.WEATHERED_COPPER_RAIL || block == ModBlocks.WAXED_WEATHERED_COPPER_RAIL) {
+			answer = gamerules.get(CopperRailsGamerules.MAX_MINECART_SPEED_COPPER_WEATHERED);
+		} else if (block == ModBlocks.OXIDIZED_COPPER_RAIL || block == ModBlocks.WAXED_OXIDIZED_COPPER_RAIL) {
+			answer = gamerules.get(CopperRailsGamerules.MAX_MINECART_SPEED_COPPER_OXIDIZED);
+		} else if (block == Blocks.POWERED_RAIL) {
+			answer = gamerules.get(CopperRailsGamerules.MAX_MINECART_SPEED_GOLD);
+		}
+		return Integer.min(answer, CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL_BPS);
 	}
 
 	/**
@@ -78,7 +86,7 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 	 */
 	@Overwrite
 	public double getMaxSpeed(ServerLevel serverLevel) {
-		return (this.minecart.isInWater() ? CopperRailsConfig.NORMAL_RAIL_SPEED / 2.0 : CopperRailsConfig.NORMAL_RAIL_SPEED);
+		return (this.minecart.isInWater() ? CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL / 2.0 : CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL);
 	}
 
 	@Unique
@@ -97,7 +105,7 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 					target = "Lnet/minecraft/world/entity/vehicle/minecart/OldMinecartBehavior;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V",
 					ordinal = 9))
 	public void setVelocityClamp(OldMinecartBehavior minecart, Vec3 velocity) {
-		double maxSpeed = getMaxRailSpeed(this.minecart.getInBlockState());
+		double maxSpeed = getMaxRailSpeed(this.minecart.getInBlockState()) / 20.0F;
 		minecart.setDeltaMovement(convergeAbs(velocity.x, maxSpeed), velocity.y, convergeAbs(velocity.z, maxSpeed));
 	}
 

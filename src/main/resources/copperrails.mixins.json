@@ -3,7 +3,10 @@
   "package": "net.robofox.copperrails.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "GameRulesInvoker",
+    "GameRulesMixin",
     "MinecartBehaviorMixin",
+    "NewMinecartBehaviorMixin",
     "OldMinecartBehaviorMixin",
     "RailStateMixin"
   ],

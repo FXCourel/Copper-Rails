@@ -25,5 +25,20 @@
   "item.copperrails.oxidized_copper_rail": "Oxidized Copper Powered Rail",
   "item.copperrails.waxed_oxidized_copper_rail": "Waxed Oxidized Copper Powered Rail",
 
-  "item.copperrails.rail_crossing": "Crossing Rail"
+  "item.copperrails.rail_crossing": "Crossing Rail",
+
+  "gamerule.category.copperrails.rail_speeds": "Rail speeds",
+  "gamerule.copperrails.max_minecart_speed_gold": "Golden Rails speed",
+  "gamerule.copperrails.max_minecart_speed_gold.description": "Maximum speed achieved on classic golden Powered Rails.",
+  "gamerule.copperrails.max_minecart_speed_copper": "Copper Rails speed",
+  "gamerule.copperrails.max_minecart_speed_copper.description": "Maximum speed achieved on Copper Powered Rails.",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed": "Exposed Copper Rails speed",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed.description": "Maximum speed achieved on Exposed Copper Powered Rails.",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered": "Weathered Copper Rails speed",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered.description": "Maximum speed achieved on Weathered Copper Powered Rails.",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized": "Oxidized Copper Rails speed",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized.description": "Maximum speed achieved on Oxidized Copper Powered Rails.",
+  "gamerule.copperrails.minecart_ascend_slowdown": "Minecart slowdown factor on slopes",
+  "gamerule.copperrails.minecart_ascend_slowdown.description": "Multiplication factor applied to the maximum speed"
+
 }

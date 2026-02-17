@@ -25,5 +25,20 @@
   "item.copperrails.oxidized_copper_rail": "Rails propulseurs en cuivre oxydé",
   "item.copperrails.waxed_oxidized_copper_rail": "Rails propulseurs en cuivre oxydé ciré",
 
-  "item.copperrails.rail_crossing": "Rails de croisement"
+  "item.copperrails.rail_crossing": "Rails de croisement",
+
+  "gamerule.category.copperrails.rail_speeds": "Vitesse des rails",
+  "gamerule.copperrails.max_minecart_speed_gold": "Vitesse des Rails propulseurs en or.",
+  "gamerule.copperrails.max_minecart_speed_gold.description": "Vitesse maximale sur les Rails propulseurs classiques en or.",
+  "gamerule.copperrails.max_minecart_speed_copper": "Vitesse des Rails en cuivre",
+  "gamerule.copperrails.max_minecart_speed_copper.description": "Vitesse maximale sur les Rails propulseurs en cuivre.",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed": "Vitesse des Rails en cuivre exposé",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed.description": "Vitesse maximale sur les Rails propulseurs en cuivre exposés.",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered": "Vitesse des Rails en cuivre patiné",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered.description": "Vitesse maximale sur les Rails propulseurs en cuivre patinés.",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized": "Vitesse des Rails en cuivre oxydé",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized.description": "Vitesse maximale sur les Rails propulseurs en cuivre oxydés.",
+  "gamerule.copperrails.minecart_ascend_slowdown": "Facteur de ralentissement en pente",
+  "gamerule.copperrails.minecart_ascend_slowdown.description": "Facteur de ralentissement appliqué sur les wagonnets dans des pentes ascendantes."
+
 }
