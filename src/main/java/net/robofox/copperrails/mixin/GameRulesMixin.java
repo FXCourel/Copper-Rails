@@ -4,7 +4,6 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.level.gamerules.GameRule;
 import net.minecraft.world.level.gamerules.GameRuleCategory;
 import net.robofox.copperrails.CopperRails;
-import net.robofox.copperrails.CopperRailsConfig;
 import net.robofox.copperrails.gamerules.CopperRailsGamerules;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;

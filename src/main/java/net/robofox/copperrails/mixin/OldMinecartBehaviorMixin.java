@@ -65,19 +65,8 @@ public abstract class OldMinecartBehaviorMixin extends MinecartBehaviorMixin {
 			return CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL_BPS;
 		}
 		GameRules gamerules = server.getWorldData().getGameRules();
-		int answer = CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL_BPS;
-		if (block == ModBlocks.COPPER_RAIL || block == ModBlocks.WAXED_COPPER_RAIL) {
-			answer = gamerules.get(CopperRailsGamerules.MAX_MINECART_SPEED_COPPER);
-		} else if (block == ModBlocks.EXPOSED_COPPER_RAIL || block == ModBlocks.WAXED_EXPOSED_COPPER_RAIL) {
-			answer = gamerules.get(CopperRailsGamerules.MAX_MINECART_SPEED_COPPER_EXPOSED);
-		} else if (block == ModBlocks.WEATHERED_COPPER_RAIL || block == ModBlocks.WAXED_WEATHERED_COPPER_RAIL) {
-			answer = gamerules.get(CopperRailsGamerules.MAX_MINECART_SPEED_COPPER_WEATHERED);
-		} else if (block == ModBlocks.OXIDIZED_COPPER_RAIL || block == ModBlocks.WAXED_OXIDIZED_COPPER_RAIL) {
-			answer = gamerules.get(CopperRailsGamerules.MAX_MINECART_SPEED_COPPER_OXIDIZED);
-		} else if (block == Blocks.POWERED_RAIL) {
-			answer = gamerules.get(CopperRailsGamerules.MAX_MINECART_SPEED_GOLD);
-		}
-		return Integer.min(answer, CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL_BPS);
+		int maxSpeed = getMaxSpeedByRailType(block, gamerules);
+		return Integer.min(maxSpeed, CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL_BPS);
 	}
 
 	/**

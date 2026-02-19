@@ -10,7 +10,12 @@ public class CopperRailsConfig {
     public static final int MAX_ASCENDING_SPEED_BPS = 10;
     public static final int GOLD_SPEED_BPS = 8;
     public static final int MAX_RAIL_SPEED_NOT_EXPERIMENTAL_BPS = 16;
-    public static final double MINECART_ASCEND_SLOWDOWN_FACTOR = 0.75;
+
+    public static final int EXPERIMENTAL_RECOMMENDED_GOLD_SPEED_BPS = 48;
+    public static final int EXPERIMENTAL_RECOMMENDED_COPPER_SPEED_BPS = 24;
+    public static final int EXPERIMENTAL_RECOMMENDED_EXPOSED_COPPER_SPEED_BPS = 16;
+    public static final int EXPERIMENTAL_RECOMMENDED_WEATHERED_COPPER_SPEED_BPS = 8;
+    public static final int EXPERIMENTAL_RECOMMENDED_OXIDIZED_COPPER_SPEED_BPS = 4;
 
     // Do not touch (conversion below)
     private static float blockPerSecondToTick(int blockPerSecondSpeed) {

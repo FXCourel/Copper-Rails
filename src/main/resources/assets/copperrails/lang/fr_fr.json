@@ -37,8 +37,5 @@
   "gamerule.copperrails.max_minecart_speed_copper_weathered": "Vitesse des Rails en cuivre érodé",
   "gamerule.copperrails.max_minecart_speed_copper_weathered.description": "Vitesse maximale sur les Rails propulseurs en cuivre érodés.",
   "gamerule.copperrails.max_minecart_speed_copper_oxidized": "Vitesse des Rails en cuivre oxydé",
-  "gamerule.copperrails.max_minecart_speed_copper_oxidized.description": "Vitesse maximale sur les Rails propulseurs en cuivre oxydés.",
-  "gamerule.copperrails.minecart_ascend_slowdown": "Facteur de ralentissement en pente",
-  "gamerule.copperrails.minecart_ascend_slowdown.description": "Facteur de ralentissement appliqué sur les wagonnets dans des pentes ascendantes."
-
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized.description": "Vitesse maximale sur les Rails propulseurs en cuivre oxydés."
 }
