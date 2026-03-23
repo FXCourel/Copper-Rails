@@ -46,18 +46,18 @@ public abstract class NewMinecartBehaviorMixin extends MinecartBehaviorMixin {
             method = "calculateHaltTrackSpeed",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
-    public boolean isPoweringRailHaltTrackSpeed(BlockState state, Block block) {
-        return isPoweringRail(state, block);
+                    target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
+    public boolean isPoweringRailHaltTrackSpeed(BlockState state, Object block) {
+        return isPoweringRail(state, (Block) block);
     }
 
     @Redirect(
             method = "calculateBoostTrackSpeed",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
-    public boolean isPoweringRailBoostTrackSpeed(BlockState state, Block block) {
-        return isPoweringRail(state, block);
+                    target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
+    public boolean isPoweringRailBoostTrackSpeed(BlockState state, Object block) {
+        return isPoweringRail(state, (Block) block);
     }
 
 //    @Inject(
@@ -77,7 +77,7 @@ public abstract class NewMinecartBehaviorMixin extends MinecartBehaviorMixin {
             CopperRails.LOGGER.error("Could not access to server gamerules ! Please report this bug");
             return CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL_BPS;
         }
-        GameRules gamerules = server.getWorldData().getGameRules();
+        GameRules gamerules = server.getGameRules();
         int maxSpeed = getMaxSpeedByRailType(block, gamerules);
         return Integer.min(maxSpeed, gamerules.get(GameRules.MAX_MINECART_SPEED));
     }

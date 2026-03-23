@@ -1,6 +1,6 @@
 package net.robofox.copperrails.block;
 
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -44,17 +44,17 @@ public class ModBlocks {
         putInRedstoneTab(ModBlocks.RAIL_CROSSING);
 
         // Register copper rails for oxidation
-        OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.COPPER_RAIL, ModBlocks.EXPOSED_COPPER_RAIL);
-        OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_RAIL, ModBlocks.WEATHERED_COPPER_RAIL);
-        OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_RAIL, ModBlocks.OXIDIZED_COPPER_RAIL);
-        OxidizableBlocksRegistry.registerWaxableBlockPair(ModBlocks.COPPER_RAIL, ModBlocks.WAXED_COPPER_RAIL);
-        OxidizableBlocksRegistry.registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_RAIL, ModBlocks.WAXED_EXPOSED_COPPER_RAIL);
-        OxidizableBlocksRegistry.registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_RAIL, ModBlocks.WAXED_WEATHERED_COPPER_RAIL);
-        OxidizableBlocksRegistry.registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_RAIL, ModBlocks.WAXED_OXIDIZED_COPPER_RAIL);
+        OxidizableBlocksRegistry.registerNextStage(ModBlocks.COPPER_RAIL, ModBlocks.EXPOSED_COPPER_RAIL);
+        OxidizableBlocksRegistry.registerNextStage(ModBlocks.EXPOSED_COPPER_RAIL, ModBlocks.WEATHERED_COPPER_RAIL);
+        OxidizableBlocksRegistry.registerNextStage(ModBlocks.WEATHERED_COPPER_RAIL, ModBlocks.OXIDIZED_COPPER_RAIL);
+        OxidizableBlocksRegistry.registerWaxable(ModBlocks.COPPER_RAIL, ModBlocks.WAXED_COPPER_RAIL);
+        OxidizableBlocksRegistry.registerWaxable(ModBlocks.EXPOSED_COPPER_RAIL, ModBlocks.WAXED_EXPOSED_COPPER_RAIL);
+        OxidizableBlocksRegistry.registerWaxable(ModBlocks.WEATHERED_COPPER_RAIL, ModBlocks.WAXED_WEATHERED_COPPER_RAIL);
+        OxidizableBlocksRegistry.registerWaxable(ModBlocks.OXIDIZED_COPPER_RAIL, ModBlocks.WAXED_OXIDIZED_COPPER_RAIL);
     }
 
     public static void putInRedstoneTab(Block block) {
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS)
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.REDSTONE_BLOCKS)
                 .register((itemGroup) -> itemGroup.accept(block.asItem()));
     }
 
