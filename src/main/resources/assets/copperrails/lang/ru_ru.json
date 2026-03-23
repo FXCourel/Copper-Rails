@@ -1,0 +1,43 @@
+{
+  "block.copperrails.copper_rail": "Медные энергорельсы",
+  "block.copperrails.waxed_copper_rail": "Вощёные медные энергорельсы",
+
+  "block.copperrails.exposed_copper_rail": "Потемневшие медные энергорельсы",
+  "block.copperrails.waxed_exposed_copper_rail": "Вощёные потемневшие медные энергорельсы",
+
+  "block.copperrails.weathered_copper_rail": "Состаренные медные энергорельсы",
+  "block.copperrails.waxed_weathered_copper_rail": "Вощёные состаренные медные энергорельсы",
+
+  "block.copperrails.oxidized_copper_rail": "Окисленные медные энергорельсы",
+  "block.copperrails.waxed_oxidized_copper_rail": "Вощёные окисленные медные энергорельсы",
+
+  "block.copperrails.rail_crossing": "Пересекающиеся рельсы",
+
+  "item.copperrails.copper_rail": "Медные энергорельсы",
+  "item.copperrails.waxed_copper_rail": "Вощёные медные энергорельсы",
+
+  "item.copperrails.exposed_copper_rail": "Потемневшие медные энергорельсы",
+  "item.copperrails.waxed_exposed_copper_rail": "Вощёные потемневшие медные энергорельсы",
+
+  "item.copperrails.weathered_copper_rail": "Состаренные медные энергорельсы",
+  "item.copperrails.waxed_weathered_copper_rail": "Вощёные состаренные медные энергорельсы",
+
+  "item.copperrails.oxidized_copper_rail": "Окисленные медные энергорельсы",
+  "item.copperrails.waxed_oxidized_copper_rail": "Вощёные окисленные медные энергорельсы",
+
+  "item.copperrails.rail_crossing": "Пересекающиеся рельсы",
+
+  "gamerule.category.copperrails.rail_speeds": "Скорость на рельсах",
+  "gamerule.copperrails.max_minecart_speed_gold": "Скорость на энергорельсах",
+  "gamerule.copperrails.max_minecart_speed_gold.description": "Максимальная скорость, достигаемая на энергорельсах.",
+  "gamerule.copperrails.max_minecart_speed_copper": "Скорость на медных энергорельсах",
+  "gamerule.copperrails.max_minecart_speed_copper.description": "Максимальная скорость, достигаемая на медных энергорельсах.",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed": "Скорость на потемневших медных энергорельсах",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed.description": "Максимальная скорость, достигаемая на потемневших медных энергорельсах.",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered": "Скорость на состаренных медных энергорельсах",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered.description": "Максимальная скорость, достигаемая на состаренных медных энергорельсах.",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized": "Скорость на окисленных медных энергорельсах",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized.description": "Максимальная скорость, достигаемая на окисленных медных энергорельсах.",
+
+  "modmenu.descriptionTranslation.copperrails": "Мод добавляет новые рельсы, которые делают вагонетки полезнее."
+}
