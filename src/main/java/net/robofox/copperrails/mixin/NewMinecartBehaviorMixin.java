@@ -29,11 +29,6 @@ public abstract class NewMinecartBehaviorMixin extends MinecartBehaviorMixin {
         super(minecart);
     }
 
-    /**
-     * Returns the effective RailShape for a crossing block, flipping it when powered.
-     * This mirrors the same fix in OldMinecartBehaviorMixin so that crossing direction
-     * switching works with the experimental minecart physics engine too.
-     */
     @Unique
     private RailShape getRailShape(BlockState blockState, Property<RailShape> property) {
         RailShape railShape = blockState.getValue(property);
@@ -41,100 +36,52 @@ public abstract class NewMinecartBehaviorMixin extends MinecartBehaviorMixin {
             boolean isPowered = blockState.getValue(PoweredRailBlock.POWERED);
             if (isPowered) {
                 switch (railShape) {
-                    case NORTH_SOUTH:
-                        return RailShape.EAST_WEST;
-                    case EAST_WEST:
-                        return RailShape.NORTH_SOUTH;
-                    default:
-                        CopperRails.LOGGER.error("Crossing rail has invalid shape");
+                    case NORTH_SOUTH: return RailShape.EAST_WEST;
+                    case EAST_WEST: return RailShape.NORTH_SOUTH;
+                    default: CopperRails.LOGGER.error("Crossing rail has invalid shape");
                 }
             }
         }
         return railShape;
     }
 
-    /**
-     * moveAlongTrack ordinal 0: first RailShape getValue call (byte offset 167).
-     * Note: ordinal 0 of getValue overall is a Boolean (POWERED), which is skipped by type.
-     * Mixin ordinal counts only calls matching the exact target descriptor, so ordinal 0 here
-     * is the first RailShape cast getValue.
-     */
-    @Redirect(
-            method = "moveAlongTrack",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/level/block/state/BlockState;getValue(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;",
-                    ordinal = 0))
-    public <T extends Comparable<T>> T getMoveAlongTrackShapeMixin0(BlockState blockState, Property<RailShape> property) {
-        return (T) getRailShape(blockState, property);
+    @SuppressWarnings("unchecked")
+    @Unique
+    private <T extends Comparable<T>> T getValueMaybeRailShape(BlockState blockState, Property<T> property) {
+        if (property.getValueClass() == RailShape.class) {
+            return (T) getRailShape(blockState, (Property<RailShape>) property);
+        }
+        return blockState.getValue(property);
     }
 
-    /**
-     * moveAlongTrack ordinal 1: second RailShape getValue call (byte offset 369).
-     */
-    @Redirect(
-            method = "moveAlongTrack",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/level/block/state/BlockState;getValue(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;",
-                    ordinal = 1))
-    public <T extends Comparable<T>> T getMoveAlongTrackShapeMixin1(BlockState blockState, Property<RailShape> property) {
-        return (T) getRailShape(blockState, property);
-    }
-
-    /**
-     * adjustToRails ordinal 0: positions the cart on the rail after shape is determined.
-     * Equivalent to getPos/getPosOffs in OldMinecartBehavior.
-     */
-    @Redirect(
-            method = "adjustToRails",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/level/block/state/BlockState;getValue(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;",
-                    ordinal = 0))
-    public <T extends Comparable<T>> T getAdjustToRailsMixin(BlockState blockState, Property<RailShape> property) {
-        return (T) getRailShape(blockState, property);
+    @Redirect(method = "moveAlongTrack", at = @At(value = "INVOKE",
+        target = "Lnet/minecraft/world/level/block/state/BlockState;getValue(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;"))
+    public <T extends Comparable<T>> T getMoveAlongTrackMixin(BlockState blockState, Property<T> property) {
+        return getValueMaybeRailShape(blockState, property);
     }
 
     @Unique
     private boolean isPoweringRail(BlockState state, Object block) {
-        // This code is injected into the start of AbstractMinecartEntity.moveAlongTrack()V
         if (block == Blocks.POWERED_RAIL) {
             Block unknownRail = state.getBlock();
-            // We want to check if this is a powering rail
             return (unknownRail instanceof GenericCopperRailBlock || unknownRail == Blocks.POWERED_RAIL);
         } else {
             CopperRails.LOGGER.warn("isOf() Mixin called with something else than Blocks.POWERED_RAIL");
-            return state.is((net.minecraft.world.level.block.Block) block);
+            return state.is((Block) block);
         }
     }
 
-    @Redirect(
-            method = "calculateHaltTrackSpeed",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
+    @Redirect(method = "calculateHaltTrackSpeed", at = @At(value = "INVOKE",
+        target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
     public boolean isPoweringRailHaltTrackSpeed(BlockState state, Object block) {
         return isPoweringRail(state, block);
     }
 
-    @Redirect(
-            method = "calculateBoostTrackSpeed",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
+    @Redirect(method = "calculateBoostTrackSpeed", at = @At(value = "INVOKE",
+        target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z"))
     public boolean isPoweringRailBoostTrackSpeed(BlockState state, Object block) {
         return isPoweringRail(state, block);
     }
-
-//    @Inject(
-//            method = "calculateBoostTrackSpeed",
-//            at = @At(
-//                    value = "INVOKE",
-//                    target = "Lnet/minecraft/world/phys/Vec3;length()D",
-//                    ordinal = 0)
-//    )
-//    private void
 
     @Unique
     public int getMaxRailSpeed(BlockState blockState) {
@@ -144,20 +91,14 @@ public abstract class NewMinecartBehaviorMixin extends MinecartBehaviorMixin {
             CopperRails.LOGGER.error("Could not access to server gamerules ! Please report this bug");
             return CopperRailsConfig.MAX_RAIL_SPEED_NOT_EXPERIMENTAL_BPS;
         }
-        GameRules gamerules = server.getWorldData().getGameRules();
+        GameRules gamerules = server.getGameRules();
         int maxSpeed = getMaxSpeedByRailType(block, gamerules);
         return Integer.min(maxSpeed, gamerules.get(GameRules.MAX_MINECART_SPEED));
     }
 
-        @ModifyVariable(
-            method = "calculateBoostTrackSpeed",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/phys/Vec3;length()D",
-                    ordinal = 0),
-            argsOnly = true)
+    @ModifyVariable(method = "calculateBoostTrackSpeed", at = @At(value = "INVOKE",
+        target = "Lnet/minecraft/world/phys/Vec3;length()D", ordinal = 0), argsOnly = true)
     private Vec3 slowedDownVec3(Vec3 vec3, @Local(ordinal = 0, argsOnly = true) BlockState blockState) {
-        // We already know that blockstate is a powered rail.
         float maxSpeed = getMaxRailSpeed(blockState) / 20.0F;
         if (vec3.length() > maxSpeed) {
             double d = Double.max(vec3.length() * 0.95 - 0.06, maxSpeed);
@@ -165,7 +106,4 @@ public abstract class NewMinecartBehaviorMixin extends MinecartBehaviorMixin {
         }
         return vec3;
     }
-
-
-
 }
