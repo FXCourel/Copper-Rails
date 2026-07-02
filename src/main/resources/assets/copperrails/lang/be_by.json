@@ -11,7 +11,7 @@
   "block.copperrails.oxidized_copper_rail": "Акісленыя мядзяныя энергарэйкі",
   "block.copperrails.waxed_oxidized_copper_rail": "Вашчыраваныя акісленыя мядзяныя энергарэйкі",
 
-  "block.copperrails.rail_crossing": "Патрэсныя рэйкі",
+  "block.copperrails.rail_crossing": "Пераключальныя рэйкi",
 
   "item.copperrails.copper_rail": "Мядзяныя энергарэйкі",
   "item.copperrails.waxed_copper_rail": "Вашчыраваныя мядзяныя энергарэйкі",
@@ -25,7 +25,7 @@
   "item.copperrails.oxidized_copper_rail": "Акісленыя мядзяныя энергарэйкі",
   "item.copperrails.waxed_oxidized_copper_rail": "Вашчыраваныя акісленыя мядзяныя энергарэйкі",
 
-  "item.copperrails.rail_crossing": "Патрэсныя рэйкі",
+  "item.copperrails.rail_crossing": "Пераключальныя рэйкi",
 
   "gamerule.category.copperrails.rail_speeds": "Хуткасць рэек",
   "gamerule.copperrails.max_minecart_speed_gold": "Хуткасць залатых рэек",
