@@ -6,11 +6,15 @@ import net.minecraft.world.entity.vehicle.minecart.AbstractMinecart;
 import net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.PoweredRailBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.RailShape;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.phys.Vec3;
 import net.robofox.copperrails.CopperRails;
 import net.robofox.copperrails.CopperRailsConfig;
+import net.robofox.copperrails.block.ModBlocks;
 import net.robofox.copperrails.block.custom.GenericCopperRailBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -95,6 +99,54 @@ public abstract class NewMinecartBehaviorMixin extends MinecartBehaviorMixin {
         return vec3;
     }
 
+    /**
+     * Mixin to implement rail direction switching for crossing rail blocks
+     */
+    @Unique
+    private RailShape getRailShape(BlockState blockState, Property<RailShape> property) {
+        RailShape railShape = blockState.getValue(property);
+        if (blockState.is(ModBlocks.RAIL_CROSSING)) {
+            boolean isPowered = blockState.getValue(PoweredRailBlock.POWERED);
+            if (isPowered) {
+                switch (railShape) {
+                    case NORTH_SOUTH:
+                        return RailShape.EAST_WEST;
+                    case EAST_WEST:
+                        return RailShape.NORTH_SOUTH;
+                    default:
+                        CopperRails.LOGGER.error("Crossing rail has invalid shape");
+                }
+            }
+        }
+        return railShape;
+    }
 
+    @Redirect(
+            method = "moveAlongTrack",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/level/block/state/BlockState;getValue(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;",
+                    ordinal = 1))
+    public <T extends Comparable<T>> T getMoveAlongTrackMixin(BlockState blockState, Property<RailShape> property) {
+        return (T) getRailShape(blockState, property);
+    }
+    @Redirect(
+            method = "stepAlongTrack",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/level/block/state/BlockState;getValue(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;",
+                    ordinal = 0))
+    public <T extends Comparable<T>> T getStepAlongTrackMixin(BlockState blockState, Property<RailShape> property) {
+        return (T) getRailShape(blockState, property);
+    }
+    @Redirect(
+            method = "adjustToRails",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/level/block/state/BlockState;getValue(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;",
+                    ordinal = 0))
+    public <T extends Comparable<T>> T getAdjustToRailMixin(BlockState blockState, Property<RailShape> property) {
+        return (T) getRailShape(blockState, property);
+    }
 
 }
