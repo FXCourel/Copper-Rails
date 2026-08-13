@@ -16,6 +16,7 @@ public class CopperRailsConfig {
     public static final int EXPERIMENTAL_RECOMMENDED_EXPOSED_COPPER_SPEED_BPS = 16;
     public static final int EXPERIMENTAL_RECOMMENDED_WEATHERED_COPPER_SPEED_BPS = 8;
     public static final int EXPERIMENTAL_RECOMMENDED_OXIDIZED_COPPER_SPEED_BPS = 4;
+    public static final int EXPERIMENTAL_RECOMMENDED_MAX_RAIL_SPEED_BPS = 48;
 
     // Do not touch (conversion below)
     private static float blockPerSecondToTick(int blockPerSecondSpeed) {

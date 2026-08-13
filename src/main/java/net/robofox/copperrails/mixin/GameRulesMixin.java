@@ -4,6 +4,7 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.level.gamerules.GameRule;
 import net.minecraft.world.level.gamerules.GameRuleCategory;
 import net.robofox.copperrails.CopperRails;
+import net.robofox.copperrails.CopperRailsConfig;
 import net.robofox.copperrails.gamerules.CopperRailsGamerules;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -19,13 +20,14 @@ public abstract class GameRulesMixin {
                     ordinal = 0
             )
     )
-    private static GameRule<Integer> redirectMaxMinecartSpeed(String string, GameRuleCategory gameRuleCategory, int i, int j, int k, FeatureFlagSet featureFlagSet) {
+    private static GameRule<Integer> redirectMaxMinecartSpeed(String string, GameRuleCategory gameRuleCategory, int defaultValue, int min, int max, FeatureFlagSet featureFlagSet) {
         // Return a modified GameRule or a new instance
-        CopperRails.LOGGER.debug("Went to redirect");
         if (CopperRailsGamerules.RAILS_CATEGORY == null) {
             throw new AssertionError("Rails category is null");
         }
-        return GameRulesInvoker.callRegisterInteger(string, CopperRailsGamerules.RAILS_CATEGORY, i, j, k, featureFlagSet);
+        // Move vanilla max_minecart_speed to custom rail speed category
+        // and change default value to make the mod work correctly with the default value.
+        return GameRulesInvoker.callRegisterInteger(string, CopperRailsGamerules.RAILS_CATEGORY, CopperRailsConfig.EXPERIMENTAL_RECOMMENDED_MAX_RAIL_SPEED_BPS, min, max, featureFlagSet);
     }
 
 
