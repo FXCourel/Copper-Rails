@@ -1,0 +1,41 @@
+{
+  "block.copperrails.copper_rail": "Мідні електризовані рейки",
+  "block.copperrails.waxed_copper_rail": "Вощені мідні електризовані рейки",
+
+  "block.copperrails.exposed_copper_rail": "Наражені мідні електризовані рейки",
+  "block.copperrails.waxed_exposed_copper_rail": "Вощені наражені мідні електризовані рейки",
+
+  "block.copperrails.weathered_copper_rail": "Вивітрені мідні електризовані рейки",
+  "block.copperrails.waxed_weathered_copper_rail": "Вощені вивітрені мідні електризовані рейки",
+
+  "block.copperrails.oxidized_copper_rail": "Окиснені мідні електризовані рейки",
+  "block.copperrails.waxed_oxidized_copper_rail": "Вощені окиснені мідні електризовані рейки",
+
+  "block.copperrails.rail_crossing": "Перемикальнi рейки",
+
+  "item.copperrails.copper_rail": "Мідні електризовані рейки",
+  "item.copperrails.waxed_copper_rail": "Вощені мідні електризовані рейки",
+
+  "item.copperrails.exposed_copper_rail": "Наражені мідні електризовані рейки",
+  "item.copperrails.waxed_exposed_copper_rail": "Вощені наражені мідні електризовані рейки",
+
+  "item.copperrails.weathered_copper_rail": "Вивітрені мідні електризовані рейки",
+  "item.copperrails.waxed_weathered_copper_rail": "Вощені вивітрені мідні електризовані рейки",
+
+  "item.copperrails.oxidized_copper_rail": "Окиснені мідні електризовані рейки",
+  "item.copperrails.waxed_oxidized_copper_rail": "Вощені окиснені мідні електризовані рейки",
+
+  "item.copperrails.rail_crossing": "Перемикальнi рейки",
+
+  "gamerule.category.copperrails.rail_speeds": "Швидкість рейок",
+  "gamerule.copperrails.max_minecart_speed_gold": "Швидкість золотих рейок",
+  "gamerule.copperrails.max_minecart_speed_gold.description": "Максимальна швидкість, що досягається на класичних золотих електризованих рейках.",
+  "gamerule.copperrails.max_minecart_speed_copper": "Швидкість мідних рейок",
+  "gamerule.copperrails.max_minecart_speed_copper.description": "Максимальна швидкість, що досягається на мідних електризованих рейках.",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed": "Швидкість наражених мідних рейок",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed.description": "Максимальна швидкість, що досягається на наражених мідних електризованих рейках.",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered": "Швидкість вивітрених мідних рейок",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered.description": "Максимальна швидкість, що досягається на вивітрених мідних електризованих рейках.",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized": "Швидкість окиснених мідних рейок",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized.description": "Максимальна швидкість, що досягається на окиснених мідних електризованих рейках."
+}

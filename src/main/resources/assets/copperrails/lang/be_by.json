@@ -1,0 +1,41 @@
+{
+  "block.copperrails.copper_rail": "Мядзяныя энергарэйкі",
+  "block.copperrails.waxed_copper_rail": "Вашчыраваныя мядзяныя энергарэйкі",
+
+  "block.copperrails.exposed_copper_rail": "Пацьмянелыя мядзяныя энергарэйкі",
+  "block.copperrails.waxed_exposed_copper_rail": "Вашчыраваныя пацьмянелыя мядзяныя энергарэйкі",
+
+  "block.copperrails.weathered_copper_rail": "Выветраныя мядзяныя энергарэйкі",
+  "block.copperrails.waxed_weathered_copper_rail": "Вашчыраваныя выветраныя мядзяныя энергарэйкі",
+
+  "block.copperrails.oxidized_copper_rail": "Акісленыя мядзяныя энергарэйкі",
+  "block.copperrails.waxed_oxidized_copper_rail": "Вашчыраваныя акісленыя мядзяныя энергарэйкі",
+
+  "block.copperrails.rail_crossing": "Пераключальныя рэйкi",
+
+  "item.copperrails.copper_rail": "Мядзяныя энергарэйкі",
+  "item.copperrails.waxed_copper_rail": "Вашчыраваныя мядзяныя энергарэйкі",
+
+  "item.copperrails.exposed_copper_rail": "Пацьмянелыя мядзяныя энергарэйкі",
+  "item.copperrails.waxed_exposed_copper_rail": "Вашчыраваныя пацьмянелыя мядзяныя энергарэйкі",
+
+  "item.copperrails.weathered_copper_rail": "Выветраныя мядзяныя энергарэйкі",
+  "item.copperrails.waxed_weathered_copper_rail": "Вашчыраваныя выветраныя мядзяныя энергарэйкі",
+
+  "item.copperrails.oxidized_copper_rail": "Акісленыя мядзяныя энергарэйкі",
+  "item.copperrails.waxed_oxidized_copper_rail": "Вашчыраваныя акісленыя мядзяныя энергарэйкі",
+
+  "item.copperrails.rail_crossing": "Пераключальныя рэйкi",
+
+  "gamerule.category.copperrails.rail_speeds": "Хуткасць рэек",
+  "gamerule.copperrails.max_minecart_speed_gold": "Хуткасць залатых рэек",
+  "gamerule.copperrails.max_minecart_speed_gold.description": "Максімальная хуткасць на класічных залатых энергарэйках.",
+  "gamerule.copperrails.max_minecart_speed_copper": "Хуткасць мядзяных рэек",
+  "gamerule.copperrails.max_minecart_speed_copper.description": "Максімальная хуткасць на мядзяных энергарэйках.",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed": "Хуткасць пацьмянелых мядзяных рэек",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed.description": "Максімальная хуткасць на пацьмянелых мядзяных энергарэйках.",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered": "Хуткасць выветраных мядзяных рэек",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered.description": "Максімальная хуткасць на выветраных мядзяных энергарэйках.",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized": "Хуткасць акісленых мядзяных рэек",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized.description": "Максімальная хуткасць на акісленых мядзяных энергарэйках."
+}
