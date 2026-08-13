@@ -42,6 +42,12 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 25
+
+	// Note to myself : in order to change the version above, if you get compilation errors,
+	// it is most certainly a IntelliJ issue. Go check in all of these locations :
+	// - Project structure > Java version
+	// - Settings > Build, Tools > Gradle
+	// - Settings > Compiler > Java
 }
 
 java {
