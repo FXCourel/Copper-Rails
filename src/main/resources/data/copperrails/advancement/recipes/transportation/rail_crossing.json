@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "copperrails:rail_crossing"
+        "recipes": "copperrails:rail_crossing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

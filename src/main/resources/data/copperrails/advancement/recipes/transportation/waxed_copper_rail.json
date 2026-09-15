@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "copperrails:waxed_copper_rail"
+        "recipes": "copperrails:waxed_copper_rail"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
