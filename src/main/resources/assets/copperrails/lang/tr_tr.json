@@ -1,0 +1,41 @@
+{
+  "block.copperrails.copper_rail": "Bakır Güçlendirilmiş Ray",
+  "block.copperrails.waxed_copper_rail": "Balmumlu Bakır Güçlendirilmiş Ray",
+
+  "block.copperrails.exposed_copper_rail": "Açıkta Kalmış Bakır Güçlendirilmiş Ray",
+  "block.copperrails.waxed_exposed_copper_rail": "Balmumlu Açıkta Kalmış Bakır Güçlendirilmiş Ray",
+
+  "block.copperrails.weathered_copper_rail": "Aşınmış Bakır Güçlendirilmiş Ray",
+  "block.copperrails.waxed_weathered_copper_rail": "Balmumlu Aşınmış Bakır Güçlendirilmiş Ray",
+
+  "block.copperrails.oxidized_copper_rail": "Oksitlenmiş Bakır Güçlendirilmiş Ray",
+  "block.copperrails.waxed_oxidized_copper_rail": "Balmumlu Oksitlenmiş Bakır Güçlendirilmiş Ray",
+
+  "block.copperrails.rail_crossing": "Kavşak Rayı",
+
+  "item.copperrails.copper_rail": "Bakır Güçlendirilmiş Ray",
+  "item.copperrails.waxed_copper_rail": "Balmumlu Bakır Güçlendirilmiş Ray",
+
+  "item.copperrails.exposed_copper_rail": "Açıkta Kalmış Bakır Güçlendirilmiş Ray",
+  "item.copperrails.waxed_exposed_copper_rail": "Balmumlu Açıkta Kalmış Bakır Güçlendirilmiş Ray",
+
+  "item.copperrails.weathered_copper_rail": "Aşınmış Bakır Güçlendirilmiş Ray",
+  "item.copperrails.waxed_weathered_copper_rail": "Balmumlu Aşınmış Bakır Güçlendirilmiş Ray",
+
+  "item.copperrails.oxidized_copper_rail": "Oksitlenmiş Bakır Güçlendirilmiş Ray",
+  "item.copperrails.waxed_oxidized_copper_rail": "Balmumlu Oksitlenmiş Bakır Güçlendirilmiş Ray",
+
+  "item.copperrails.rail_crossing": "Kavşak Rayı",
+
+  "gamerule.category.copperrails.rail_speeds": "Ray hızları",
+  "gamerule.copperrails.max_minecart_speed_gold": "Altın ray hızı",
+  "gamerule.copperrails.max_minecart_speed_gold.description": "Klasik altın Güçlendirilmiş Raylarda ulaşılan azami hız.",
+  "gamerule.copperrails.max_minecart_speed_copper": "Bakır ray hızı",
+  "gamerule.copperrails.max_minecart_speed_copper.description": "Bakır Güçlendirilmiş Raylarda ulaşılan azami hız.",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed": "Açıkta kalmış bakır ray hızı",
+  "gamerule.copperrails.max_minecart_speed_copper_exposed.description": "Açıkta Kalmış Bakır Güçlendirilmiş Raylarda ulaşılan azami hız.",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered": "Aşınmış bakır ray hızı",
+  "gamerule.copperrails.max_minecart_speed_copper_weathered.description": "Aşınmış Bakır Güçlendirilmiş Raylarda ulaşılan azami hız.",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized": "Oksitlenmiş bakır ray hızı",
+  "gamerule.copperrails.max_minecart_speed_copper_oxidized.description": "Oksitlenmiş Bakır Güçlendirilmiş Raylarda ulaşılan azami hız."
+}
